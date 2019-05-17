@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h2>Basic Table</h2>
+    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <!-- The scope attribute specifies that this is a header for a column -->
+          <th scope="col">Movie Name</th>
+          <th scope="col">Year</th>
+          <th scope="col">Actors</th>
+          <th scope="col">Poster</th>
+        </tr>
+      </thead>
+      
+        <!-- Insert additional movie rows here -->
+        <tr>
+          <td>Interstellar</td>
+          <td>2014</td>
+          <td>Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow</td>
+          <td><img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // The below code fills in the first row of the table
+    var movie = "Mr. Nobody";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+
+      // Create and save a reference to new empty table row
+      // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+      // Append the td elements to the new table row
+      // Append the table row to the tbody element
+    });
+
+    // Repeat the above logic to add rows for two more movies of your choice
+
+    // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+
+    var movie = "The Martian";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+console.log(response);
+      // Create and save a reference to new empty table row
+    makeTable(response);
+    });
+
+    var movie = "Sounder";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+console.log(response);
+      // Create and save a reference to new empty table row
+     makeTable(response);
+    });
+
+    var movie = "Interstellar";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+console.log(response);
+      // Create and save a reference to new empty table row
+     makeTable(response);
+    });
+
+    var movie = "Killer Klowns From Outer Space";
+    var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+console.log(response);
+      // Create and save a reference to new empty table row
+     makeTable(response);
+    });
+
+    //create another function to process the movie
+
+
+  function makeTable(response) {
+    var tableRow = $("<tr>");
+      // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+     var tableData1 =  $("<td>").text(response.Title);
+     var tableData2 =  $("<td>").text(response.Year);
+     var tableData3 =  $("<td>").text(response.Actors);
+     var image = $("<img>").attr("src",response.Poster);
+     var tableData4 =  $("<td>").append(image);
+      // Append the td eleme>nts to the new table row
+      tableRow.append(tableData1, tableData2, tableData3, tableData4);
+      // Append the table row to the tbody element
+    $(".table tbody").append(tableRow);
+  }
+  </script>
+</body>
+
+</html>
